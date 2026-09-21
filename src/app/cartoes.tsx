@@ -9,19 +9,23 @@ import {
   View,
 } from 'react-native';
 
+const AZUL = '#087DDD';
+const CINZA = '#777';
+
 export default function CartoesScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => router.back()}>
-          <Ionicons name="arrow-back" size={25} color="#333" />
+          <Ionicons name="arrow-back" size={32} color="#fff" />
         </TouchableOpacity>
 
-        <Text style={styles.headerTitle}>Meus cartões</Text>
+        <View style={styles.logo}>
+          <Text style={styles.logoRio}>riocard++</Text>
+          <Text style={styles.logoMais}>mais</Text>
+        </View>
 
-        <TouchableOpacity>
-          <Ionicons name="notifications-outline" size={25} color="#555" />
-        </TouchableOpacity>
+        <View style={{ width: 32 }} />
       </View>
 
       <ScrollView
@@ -30,200 +34,261 @@ export default function CartoesScreen() {
         showsVerticalScrollIndicator={false}
       >
         <Text style={styles.title}>Meus cartões</Text>
-        <Text style={styles.subtitle}>
-          Consulte seus cartões cadastrados
-        </Text>
 
         <View style={styles.card}>
-          <View style={styles.cardIcon}>
+          <View style={[styles.cardImage, { backgroundColor: '#148bd2' }]}>
             <MaterialCommunityIcons
               name="credit-card-outline"
-              size={31}
-              color="#e30613"
+              size={30}
+              color="#fff"
             />
           </View>
 
           <View style={styles.cardInfo}>
-            <Text style={styles.cardName}>Riocard Mais</Text>
-            <Text style={styles.cardNumber}>**** **** **** 0000</Text>
-            <Text style={styles.balance}>Saldo: R$ 0,00</Text>
+            <Text style={styles.cardName}>Cartão Digital</Text>
+            <Text style={styles.cardNumber}>01.07.03372871-7</Text>
           </View>
-
-          <Ionicons name="chevron-forward" size={23} color="#999" />
         </View>
 
         <View style={styles.card}>
-          <View style={styles.cardIcon}>
+          <View style={[styles.cardImage, { backgroundColor: '#e52a91' }]}>
             <MaterialCommunityIcons
               name="credit-card-outline"
-              size={31}
-              color="#e30613"
+              size={30}
+              color="#fff"
             />
           </View>
 
           <View style={styles.cardInfo}>
-            <Text style={styles.cardName}>Cartão Expresso</Text>
-            <Text style={styles.cardNumber}>**** **** **** 1234</Text>
-            <Text style={styles.balance}>Saldo: R$ 0,00</Text>
+            <Text style={styles.cardName}>Eu</Text>
+            <Text style={styles.cardNumber}>01.09.14194806-1</Text>
           </View>
 
-          <Ionicons name="chevron-forward" size={23} color="#999" />
+          <View style={styles.status}>
+            <Text style={styles.statusText}>BUI habilitado ✓</Text>
+          </View>
         </View>
-
-        <TouchableOpacity style={styles.addButton}>
-          <Ionicons name="add-circle-outline" size={24} color="#e30613" />
-          <Text style={styles.addText}>Adicionar novo cartão</Text>
-        </TouchableOpacity>
       </ScrollView>
 
-      <View style={styles.bottomNav}>
-        <TouchableOpacity style={styles.navItem} onPress={() => router.replace('/')}>
-          <Ionicons name="home-outline" size={24} color="#777" />
-          <Text style={styles.navText}>Início</Text>
-        </TouchableOpacity>
+      <TouchableOpacity style={styles.addButton}>
+        <Text style={styles.addText}>Adicionar novo cartão</Text>
+      </TouchableOpacity>
 
-        <TouchableOpacity style={styles.navItem}>
-          <MaterialCommunityIcons
-            name="credit-card"
-            size={24}
-            color="#e30613"
-          />
-          <Text style={styles.navActive}>Cartões</Text>
-        </TouchableOpacity>
+      <View style={styles.bottomNav}>
+        <NavItem
+          icon="home-outline"
+          label="Início"
+          onPress={() => router.replace('/')}
+        />
+
+        <NavItem
+          icon="card-outline"
+          label={'Meus\ncartões'}
+          active
+        />
 
         <TouchableOpacity
-          style={styles.navItem}
+          style={styles.rechargeNav}
           onPress={() => router.push('/recarga')}
         >
-          <MaterialCommunityIcons name="cash-plus" size={24} color="#777" />
+          <View style={styles.rechargeCircle}>
+            <MaterialCommunityIcons
+              name="cash-plus"
+              size={28}
+              color="#fff"
+            />
+          </View>
           <Text style={styles.navText}>Recarga</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.navItem}
+        <NavItem icon="star-outline" label="Clube" />
+
+        <NavItem
+          icon="menu"
+          label="Serviços"
           onPress={() => router.push('/servicos')}
-        >
-          <Ionicons name="grid-outline" size={24} color="#777" />
-          <Text style={styles.navText}>Serviços</Text>
-        </TouchableOpacity>
+        />
       </View>
     </SafeAreaView>
+  );
+}
+
+function NavItem({
+  icon,
+  label,
+  active = false,
+  onPress,
+}: {
+  icon: any;
+  label: string;
+  active?: boolean;
+  onPress?: () => void;
+}) {
+  return (
+    <TouchableOpacity style={styles.navItem} onPress={onPress}>
+      <Ionicons
+        name={icon}
+        size={27}
+        color={active ? AZUL : CINZA}
+      />
+
+      <Text style={[styles.navText, active && styles.navActive]}>
+        {label}
+      </Text>
+    </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#f9faf7',
   },
+
   header: {
-    height: 65,
-    paddingHorizontal: 20,
+    height: 125,
+    backgroundColor: AZUL,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
+    paddingHorizontal: 20,
   },
-  headerTitle: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#333',
+
+  logo: {
+    alignItems: 'center',
   },
+
+  logoRio: {
+    color: '#fff',
+    fontSize: 28,
+    fontWeight: 'bold',
+    lineHeight: 29,
+  },
+
+  logoMais: {
+    color: '#fff',
+    fontSize: 27,
+    fontWeight: 'bold',
+    lineHeight: 28,
+  },
+
   container: {
     flex: 1,
   },
+
   content: {
-    padding: 20,
+    padding: 18,
+    paddingBottom: 30,
   },
+
   title: {
-    fontSize: 23,
-    fontWeight: '700',
-    color: '#333',
-    marginTop: 5,
+    color: AZUL,
+    fontSize: 27,
+    fontWeight: 'bold',
+    marginBottom: 24,
   },
-  subtitle: {
-    fontSize: 14,
-    color: '#777',
-    marginTop: 6,
-    marginBottom: 25,
-  },
+
   card: {
-    minHeight: 105,
+    minHeight: 100,
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    padding: 14,
+    marginBottom: 18,
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 16,
-    marginBottom: 14,
-    borderRadius: 12,
-    backgroundColor: '#fff',
+    elevation: 3,
     borderWidth: 1,
-    borderColor: '#e5e5e5',
-    elevation: 2,
+    borderColor: '#eee',
   },
-  cardIcon: {
-    width: 52,
-    height: 52,
-    borderRadius: 26,
-    backgroundColor: '#fff1f2',
+
+  cardImage: {
+    width: 58,
+    height: 75,
+    borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 14,
+    marginRight: 15,
   },
+
   cardInfo: {
     flex: 1,
   },
+
   cardName: {
-    fontSize: 16,
-    fontWeight: '700',
-    color: '#333',
-  },
-  cardNumber: {
-    fontSize: 13,
-    color: '#777',
-    marginTop: 4,
-  },
-  balance: {
-    fontSize: 13,
-    color: '#555',
-    marginTop: 6,
-  },
-  addButton: {
-    height: 55,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#e30613',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 8,
-  },
-  addText: {
-    color: '#e30613',
-    fontSize: 15,
+    fontSize: 21,
     fontWeight: '600',
-    marginLeft: 8,
+    color: '#222',
   },
+
+  cardNumber: {
+    fontSize: 16,
+    color: '#666',
+    marginTop: 5,
+  },
+
+  status: {
+    backgroundColor: '#27951d',
+    borderRadius: 15,
+    paddingHorizontal: 8,
+    paddingVertical: 5,
+  },
+
+  statusText: {
+    color: '#fff',
+    fontSize: 10,
+  },
+
+  addButton: {
+    height: 67,
+    backgroundColor: AZUL,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  addText: {
+    color: '#fff',
+    fontSize: 20,
+    fontWeight: '600',
+  },
+
   bottomNav: {
-    height: 70,
+    height: 82,
+    flexDirection: 'row',
+    backgroundColor: '#fafbf8',
     borderTopWidth: 1,
     borderTopColor: '#ddd',
-    flexDirection: 'row',
-    backgroundColor: '#fff',
-    paddingBottom: 5,
   },
+
   navItem: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
+
+  rechargeNav: {
+    flex: 1.1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  rechargeCircle: {
+    width: 49,
+    height: 49,
+    borderRadius: 25,
+    backgroundColor: '#aaa',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: -19,
+  },
+
   navText: {
+    color: CINZA,
     fontSize: 11,
-    color: '#777',
+    textAlign: 'center',
     marginTop: 3,
   },
+
   navActive: {
-    fontSize: 11,
-    color: '#e30613',
-    marginTop: 3,
+    color: AZUL,
   },
 });

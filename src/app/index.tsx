@@ -9,337 +9,414 @@ import {
   View,
 } from 'react-native';
 
+const AZUL = '#087DDD';
+const AZUL_ESCURO = '#0064A9';
+const CINZA = '#777';
+
 export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
+      {/* Cabeçalho */}
       <View style={styles.header}>
-        <View>
-          <Text style={styles.logoRio}>RIOCARD</Text>
-          <Text style={styles.logoMais}>MAIS</Text>
+        <View style={styles.logo}>
+          <Text style={styles.logoRio}>riocard</Text>
+          <Text style={styles.logoMais}>mais</Text>
+          <Text style={styles.logoPlus}>++</Text>
         </View>
-
-        <TouchableOpacity>
-          <Ionicons name="notifications-outline" size={27} color="#555" />
-        </TouchableOpacity>
       </View>
 
       <ScrollView
-        style={styles.container}
+        style={styles.scroll}
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}
       >
-        <Text style={styles.welcome}>Olá, Alexander!</Text>
-
+        {/* Cartão Digital */}
         <View style={styles.digitalCard}>
           <View style={styles.cardTop}>
             <Text style={styles.cardTitle}>Cartão Digital</Text>
+
+            <TouchableOpacity style={styles.rechargeMini}>
+              <MaterialCommunityIcons
+                name="cash-plus"
+                size={21}
+                color="#fff"
+              />
+              <Text style={styles.rechargeMiniText}>Fazer recarga</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.balanceRow}>
+            <Text style={styles.balance}>R$ • • • • •</Text>
+            <Ionicons name="eye-off-outline" size={28} color="#fff" />
+          </View>
+
+          <View style={styles.paymentRow}>
+            <View style={styles.paymentOption}>
+              <Ionicons name="phone-portrait-outline" size={25} color="#fff" />
+              <Text style={styles.paymentText}>Pagar por celular</Text>
+            </View>
+
+            <View style={styles.separator} />
+
+            <View style={styles.paymentOption}>
+              <MaterialCommunityIcons name="qrcode" size={27} color="#fff" />
+              <Text style={styles.paymentText}>Pagar por QR Code</Text>
+            </View>
+          </View>
+        </View>
+
+        {/* Serviços */}
+        <Text style={styles.sectionTitle}>Serviços</Text>
+
+        <Text style={styles.sectionSubtitle}>
+          Clique abaixo no serviço que deseja utilizar
+        </Text>
+
+        <View style={styles.servicesGrid}>
+          <Service
+            icon="cellphone-check"
+            title={'Valida\nMais'}
+          />
+
+          <Service
+            icon="credit-card-outline"
+            title={'Cartão\nDigital'}
+          />
+
+          <Service
+            icon="star-outline"
+            title={'Clube\nRiocard'}
+          />
+
+          <Service
+            icon="cash-plus"
+            title={'Fazer\nrecarga'}
+            onPress={() => router.push('/recarga')}
+          />
+
+          <Service
+            icon="credit-card-multiple-outline"
+            title={'Meus\ncartões'}
+            onPress={() => router.push('/cartoes')}
+          />
+
+          <Service
+            icon="clipboard-text-outline"
+            title={'Meus\npedidos'}
+          />
+        </View>
+      </ScrollView>
+
+      {/* Navegação inferior */}
+      <View style={styles.bottomNav}>
+        <NavItem
+          icon="home-outline"
+          label="Início"
+          active
+          onPress={() => router.replace('/')}
+        />
+
+        <NavItem
+          icon="card-outline"
+          label={'Meus\ncartões'}
+          onPress={() => router.push('/cartoes')}
+        />
+
+        <TouchableOpacity
+          style={styles.rechargeNav}
+          onPress={() => router.push('/recarga')}
+        >
+          <View style={styles.rechargeCircle}>
             <MaterialCommunityIcons
-              name="contactless-payment"
+              name="cash-plus"
               size={29}
               color="#fff"
             />
           </View>
-
-          <Text style={styles.balanceLabel}>Saldo disponível</Text>
-          <Text style={styles.balance}>R$ 0,00</Text>
-
-          <View style={styles.cardBottom}>
-            <Text style={styles.cardNumber}>**** **** **** 0000</Text>
-            <Text style={styles.cardBrand}>RIOCARD +</Text>
-          </View>
-        </View>
-
-        <Text style={styles.sectionTitle}>O que você deseja fazer?</Text>
-
-        <View style={styles.actions}>
-          <TouchableOpacity
-            style={styles.action}
-            onPress={() => router.push('/recarga')}
-          >
-            <View style={styles.iconCircle}>
-              <MaterialCommunityIcons
-                name="credit-card-plus-outline"
-                size={28}
-                color="#e30613"
-              />
-            </View>
-            <Text style={styles.actionText}>Recarregar</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.action}
-            onPress={() => router.push('/cartoes')}
-          >
-            <View style={styles.iconCircle}>
-              <MaterialCommunityIcons
-                name="credit-card-outline"
-                size={28}
-                color="#e30613"
-              />
-            </View>
-            <Text style={styles.actionText}>Meus cartões</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.action}>
-            <View style={styles.iconCircle}>
-              <Ionicons name="swap-horizontal" size={28} color="#e30613" />
-            </View>
-            <Text style={styles.actionText}>Transferir</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.action}
-            onPress={() => router.push('/servicos')}
-          >
-            <View style={styles.iconCircle}>
-              <Ionicons name="grid-outline" size={27} color="#e30613" />
-            </View>
-            <Text style={styles.actionText}>Serviços</Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.infoBox}>
-          <Ionicons
-            name="information-circle-outline"
-            size={27}
-            color="#e30613"
-          />
-          <View style={styles.infoContent}>
-            <Text style={styles.infoTitle}>Facilidade no seu dia</Text>
-            <Text style={styles.infoText}>
-              Consulte seus cartões e faça recargas pelo aplicativo.
-            </Text>
-          </View>
-        </View>
-      </ScrollView>
-
-      <View style={styles.bottomNav}>
-        <TouchableOpacity
-          style={styles.navItem}
-          onPress={() => router.replace('/')}
-        >
-          <Ionicons name="home" size={24} color="#e30613" />
-          <Text style={styles.navActive}>Início</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.navItem}
-          onPress={() => router.push('/cartoes')}
-        >
-          <MaterialCommunityIcons
-            name="credit-card-outline"
-            size={24}
-            color="#777"
-          />
-          <Text style={styles.navText}>Cartões</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.navItem}
-          onPress={() => router.push('/recarga')}
-        >
-          <MaterialCommunityIcons
-            name="cash-plus"
-            size={24}
-            color="#777"
-          />
           <Text style={styles.navText}>Recarga</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.navItem}
+        <NavItem
+          icon="star-outline"
+          label="Clube"
+        />
+
+        <NavItem
+          icon="menu"
+          label="Serviços"
           onPress={() => router.push('/servicos')}
-        >
-          <Ionicons name="grid-outline" size={24} color="#777" />
-          <Text style={styles.navText}>Serviços</Text>
-        </TouchableOpacity>
+        />
       </View>
     </SafeAreaView>
+  );
+}
+
+function Service({
+  icon,
+  title,
+  onPress,
+}: {
+  icon: any;
+  title: string;
+  onPress?: () => void;
+}) {
+  return (
+    <TouchableOpacity
+      style={styles.serviceCard}
+      onPress={onPress}
+      activeOpacity={0.75}
+    >
+      <MaterialCommunityIcons
+        name={icon}
+        size={31}
+        color={AZUL}
+      />
+
+      <Text style={styles.serviceText}>{title}</Text>
+    </TouchableOpacity>
+  );
+}
+
+function NavItem({
+  icon,
+  label,
+  active = false,
+  onPress,
+}: {
+  icon: any;
+  label: string;
+  active?: boolean;
+  onPress?: () => void;
+}) {
+  return (
+    <TouchableOpacity
+      style={styles.navItem}
+      onPress={onPress}
+    >
+      <Ionicons
+        name={icon}
+        size={27}
+        color={active ? AZUL : CINZA}
+      />
+
+      <Text
+        style={[
+          styles.navText,
+          active && styles.navActive,
+        ]}
+      >
+        {label}
+      </Text>
+    </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#f9faf7',
   },
 
   header: {
-    height: 72,
-    paddingHorizontal: 22,
-    flexDirection: 'row',
+    height: 125,
+    backgroundColor: AZUL,
+    justifyContent: 'center',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
+  },
+
+  logo: {
+    position: 'relative',
+    alignItems: 'center',
   },
 
   logoRio: {
-    fontSize: 17,
-    fontWeight: '900',
-    color: '#e30613',
-    letterSpacing: 1,
+    color: '#fff',
+    fontSize: 32,
+    fontWeight: 'bold',
+    lineHeight: 32,
   },
 
   logoMais: {
-    fontSize: 11,
+    color: '#fff',
+    fontSize: 31,
     fontWeight: 'bold',
-    color: '#555',
-    letterSpacing: 3,
+    lineHeight: 31,
   },
 
-  container: {
+  logoPlus: {
+    position: 'absolute',
+    right: -24,
+    top: -8,
+    color: '#fff',
+    fontSize: 25,
+    fontWeight: 'bold',
+  },
+
+  scroll: {
     flex: 1,
   },
 
   content: {
-    padding: 20,
-    paddingBottom: 30,
-  },
-
-  welcome: {
-    fontSize: 21,
-    fontWeight: '600',
-    color: '#333',
-    marginBottom: 18,
+    paddingBottom: 25,
   },
 
   digitalCard: {
-    backgroundColor: '#e30613',
-    borderRadius: 18,
-    padding: 20,
-    minHeight: 190,
-    marginBottom: 28,
-    elevation: 5,
+    marginHorizontal: 15,
+    marginTop: 0,
+    backgroundColor: AZUL,
+    borderRadius: 8,
+    padding: 17,
+    minHeight: 180,
   },
 
   cardTop: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
 
   cardTitle: {
     color: '#fff',
-    fontSize: 18,
-    fontWeight: '700',
+    fontSize: 20,
   },
 
-  balanceLabel: {
+  rechargeMini: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.08)',
+    padding: 8,
+    borderRadius: 6,
+  },
+
+  rechargeMiniText: {
     color: '#fff',
-    opacity: 0.9,
-    marginTop: 28,
     fontSize: 13,
+    marginLeft: 4,
+  },
+
+  balanceRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 24,
+    alignItems: 'center',
   },
 
   balance: {
     color: '#fff',
     fontSize: 27,
     fontWeight: 'bold',
-    marginTop: 3,
   },
 
-  cardBottom: {
+  paymentRow: {
+    height: 51,
+    backgroundColor: AZUL_ESCURO,
+    borderRadius: 8,
+    marginTop: 27,
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 30,
+    alignItems: 'center',
   },
 
-  cardNumber: {
+  paymentOption: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  separator: {
+    width: 1,
+    height: '100%',
+    backgroundColor: '#fff',
+  },
+
+  paymentText: {
     color: '#fff',
     fontSize: 13,
-  },
-
-  cardBrand: {
-    color: '#fff',
-    fontWeight: 'bold',
+    marginLeft: 5,
   },
 
   sectionTitle: {
+    color: AZUL,
+    fontSize: 27,
+    fontWeight: 'bold',
+    marginTop: 25,
+    marginHorizontal: 16,
+  },
+
+  sectionSubtitle: {
+    color: AZUL,
     fontSize: 18,
-    fontWeight: '700',
-    color: '#333',
-    marginBottom: 20,
+    lineHeight: 24,
+    marginHorizontal: 16,
+    marginTop: 8,
+    marginBottom: 18,
   },
 
-  actions: {
+  servicesGrid: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
+    paddingHorizontal: 14,
     justifyContent: 'space-between',
-    marginBottom: 30,
   },
 
-  action: {
-    alignItems: 'center',
-    width: '23%',
-  },
-
-  iconCircle: {
-    width: 57,
-    height: 57,
-    borderRadius: 29,
-    backgroundColor: '#f8f8f8',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 8,
+  serviceCard: {
+    width: '31%',
+    minHeight: 105,
+    backgroundColor: '#fff',
+    borderRadius: 7,
+    marginBottom: 14,
+    padding: 13,
+    elevation: 2,
     borderWidth: 1,
-    borderColor: '#eee',
+    borderColor: '#e5e5e5',
   },
 
-  actionText: {
-    fontSize: 11,
-    color: '#555',
-    textAlign: 'center',
-  },
-
-  infoBox: {
-    flexDirection: 'row',
-    backgroundColor: '#fafafa',
-    padding: 17,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: '#eee',
-  },
-
-  infoContent: {
-    flex: 1,
-    marginLeft: 12,
-  },
-
-  infoTitle: {
-    fontWeight: '700',
+  serviceText: {
     color: '#333',
-    marginBottom: 4,
-  },
-
-  infoText: {
-    fontSize: 13,
-    lineHeight: 18,
-    color: '#666',
+    fontSize: 16,
+    fontWeight: '600',
+    marginTop: 8,
+    lineHeight: 19,
   },
 
   bottomNav: {
-    height: 70,
+    height: 82,
+    flexDirection: 'row',
+    backgroundColor: '#fafbf8',
     borderTopWidth: 1,
     borderTopColor: '#ddd',
-    flexDirection: 'row',
-    backgroundColor: '#fff',
-    paddingBottom: 5,
   },
 
   navItem: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
+    justifyContent: 'center',
   },
 
-  navActive: {
-    fontSize: 11,
-    color: '#e30613',
-    marginTop: 3,
+  rechargeNav: {
+    flex: 1.1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  rechargeCircle: {
+    width: 49,
+    height: 49,
+    borderRadius: 25,
+    backgroundColor: AZUL,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: -19,
   },
 
   navText: {
+    color: CINZA,
     fontSize: 11,
-    color: '#777',
+    textAlign: 'center',
     marginTop: 3,
+  },
+
+  navActive: {
+    color: AZUL,
   },
 });

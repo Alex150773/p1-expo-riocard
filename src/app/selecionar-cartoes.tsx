@@ -10,6 +10,8 @@ import {
   View,
 } from 'react-native';
 
+const AZUL = '#087DDD';
+
 export default function SelecionarCartoesScreen() {
   const [selecionado, setSelecionado] = useState(0);
 
@@ -17,12 +19,15 @@ export default function SelecionarCartoesScreen() {
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => router.back()}>
-          <Ionicons name="arrow-back" size={25} color="#333" />
+          <Ionicons name="arrow-back" size={32} color="#fff" />
         </TouchableOpacity>
 
-        <Text style={styles.headerTitle}>Recarga</Text>
+        <View style={styles.logo}>
+          <Text style={styles.logoRio}>riocard++</Text>
+          <Text style={styles.logoMais}>mais</Text>
+        </View>
 
-        <View style={{ width: 25 }} />
+        <View style={{ width: 32 }} />
       </View>
 
       <ScrollView
@@ -43,23 +48,27 @@ export default function SelecionarCartoesScreen() {
           ]}
           onPress={() => setSelecionado(0)}
         >
-          <View style={styles.cardIcon}>
+          <View style={styles.cardImage}>
             <MaterialCommunityIcons
               name="credit-card-outline"
-              size={30}
-              color="#e30613"
+              size={31}
+              color="#fff"
             />
           </View>
 
           <View style={styles.cardInfo}>
-            <Text style={styles.cardName}>Riocard Mais</Text>
-            <Text style={styles.cardNumber}>**** **** **** 0000</Text>
+            <Text style={styles.cardName}>Cartão Digital</Text>
+            <Text style={styles.cardNumber}>01.07.03372871-7</Text>
           </View>
 
           <Ionicons
-            name={selecionado === 0 ? 'radio-button-on' : 'radio-button-off'}
-            size={24}
-            color="#e30613"
+            name={
+              selecionado === 0
+                ? 'radio-button-on'
+                : 'radio-button-off'
+            }
+            size={26}
+            color={AZUL}
           />
         </TouchableOpacity>
 
@@ -70,40 +79,46 @@ export default function SelecionarCartoesScreen() {
           ]}
           onPress={() => setSelecionado(1)}
         >
-          <View style={styles.cardIcon}>
+          <View style={[styles.cardImage, styles.cardPink]}>
             <MaterialCommunityIcons
               name="credit-card-outline"
-              size={30}
-              color="#e30613"
+              size={31}
+              color="#fff"
             />
           </View>
 
           <View style={styles.cardInfo}>
-            <Text style={styles.cardName}>Cartão Expresso</Text>
-            <Text style={styles.cardNumber}>**** **** **** 1234</Text>
+            <Text style={styles.cardName}>Eu</Text>
+            <Text style={styles.cardNumber}>01.09.14194806-1</Text>
           </View>
 
           <Ionicons
-            name={selecionado === 1 ? 'radio-button-on' : 'radio-button-off'}
-            size={24}
-            color="#e30613"
+            name={
+              selecionado === 1
+                ? 'radio-button-on'
+                : 'radio-button-off'
+            }
+            size={26}
+            color={AZUL}
           />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.favorite}>
-          <Ionicons name="star-outline" size={22} color="#e30613" />
-          <Text style={styles.favoriteText}>Cartões favoritos</Text>
+        <TouchableOpacity style={styles.option}>
+          <Ionicons name="star-outline" size={26} color={AZUL} />
+          <Text style={styles.optionText}>Cartões favoritos</Text>
+          <Ionicons name="chevron-forward" size={22} color="#888" />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.addCard}>
-          <Ionicons name="add-circle-outline" size={23} color="#e30613" />
-          <Text style={styles.addCardText}>Adicionar cartão</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.continueButton}>
-          <Text style={styles.continueText}>Continuar</Text>
+        <TouchableOpacity style={styles.option}>
+          <Ionicons name="add-circle-outline" size={27} color={AZUL} />
+          <Text style={styles.optionText}>Adicionar cartão</Text>
+          <Ionicons name="chevron-forward" size={22} color="#888" />
         </TouchableOpacity>
       </ScrollView>
+
+      <TouchableOpacity style={styles.continueButton}>
+        <Text style={styles.continueText}>Continuar</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
@@ -111,113 +126,131 @@ export default function SelecionarCartoesScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#f9faf7',
   },
+
   header: {
-    height: 65,
-    paddingHorizontal: 20,
+    height: 125,
+    backgroundColor: AZUL,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
+    paddingHorizontal: 20,
   },
-  headerTitle: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#333',
+
+  logo: {
+    alignItems: 'center',
   },
+
+  logoRio: {
+    color: '#fff',
+    fontSize: 28,
+    fontWeight: 'bold',
+    lineHeight: 29,
+  },
+
+  logoMais: {
+    color: '#fff',
+    fontSize: 27,
+    fontWeight: 'bold',
+    lineHeight: 28,
+  },
+
   container: {
     flex: 1,
   },
+
   content: {
     padding: 20,
-    paddingBottom: 40,
+    paddingBottom: 35,
   },
+
   title: {
-    fontSize: 23,
-    fontWeight: '700',
-    color: '#333',
-    marginTop: 8,
+    color: AZUL,
+    fontSize: 27,
+    fontWeight: 'bold',
+    marginTop: 5,
   },
+
   subtitle: {
-    fontSize: 14,
-    color: '#777',
-    marginTop: 7,
-    marginBottom: 24,
+    fontSize: 16,
+    color: '#666',
+    marginTop: 8,
+    marginBottom: 25,
   },
+
   card: {
-    minHeight: 85,
+    minHeight: 95,
+    backgroundColor: '#fff',
+    borderRadius: 10,
     borderWidth: 1,
     borderColor: '#ddd',
-    borderRadius: 12,
-    padding: 14,
-    marginBottom: 14,
+    padding: 13,
+    marginBottom: 15,
     flexDirection: 'row',
     alignItems: 'center',
   },
+
   cardSelected: {
-    borderColor: '#e30613',
+    borderColor: AZUL,
     borderWidth: 2,
   },
-  cardIcon: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    backgroundColor: '#fff1f2',
+
+  cardImage: {
+    width: 55,
+    height: 70,
+    borderRadius: 7,
+    backgroundColor: '#148bd2',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 14,
   },
+
+  cardPink: {
+    backgroundColor: '#e52a91',
+  },
+
   cardInfo: {
     flex: 1,
   },
+
   cardName: {
-    fontSize: 16,
-    fontWeight: '700',
+    fontSize: 19,
+    fontWeight: '600',
     color: '#333',
   },
+
   cardNumber: {
-    fontSize: 13,
-    color: '#777',
+    fontSize: 14,
+    color: '#666',
     marginTop: 5,
   },
-  favorite: {
-    height: 55,
+
+  option: {
+    minHeight: 65,
     flexDirection: 'row',
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderBottomColor: '#eee',
-    marginTop: 4,
+    borderBottomColor: '#ddd',
   },
-  favoriteText: {
-    fontSize: 15,
-    color: '#444',
-    marginLeft: 12,
+
+  optionText: {
+    flex: 1,
+    fontSize: 16,
+    color: '#333',
+    marginLeft: 14,
   },
-  addCard: {
-    height: 55,
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
-  },
-  addCardText: {
-    fontSize: 15,
-    color: '#444',
-    marginLeft: 12,
-  },
+
   continueButton: {
-    height: 55,
-    backgroundColor: '#e30613',
-    borderRadius: 10,
-    alignItems: 'center',
+    height: 67,
+    backgroundColor: AZUL,
     justifyContent: 'center',
-    marginTop: 30,
+    alignItems: 'center',
   },
+
   continueText: {
     color: '#fff',
-    fontSize: 16,
-    fontWeight: '700',
+    fontSize: 21,
+    fontWeight: '600',
   },
 });

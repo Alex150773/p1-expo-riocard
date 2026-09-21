@@ -1,7 +1,7 @@
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { router } from 'expo-router';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import {
-  SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,

@@ -1,33 +1,33 @@
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import { router } from 'expo-router';
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { router } from "expo-router";
 import {
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+    ScrollView,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View,
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-const AZUL = '#087DDD';
-const CINZA = '#777';
+const AZUL = "#087DDD";
+const CINZA = "#777";
 
 const servicos = [
-  { nome: 'Perfil', icone: 'person-outline', rota: '/perfil' },
-  { nome: 'Gerenciar pagamento', icone: 'wallet-outline' },
-  { nome: 'Cartão Digital', icone: 'phone-portrait-outline' },
-  { nome: 'Meus Cartões', icone: 'card-outline', rota: '/cartoes' },
-  { nome: 'Meus pedidos', icone: 'receipt-outline' },
-  { nome: 'Recarregue seu cartão', icone: 'cash-outline', rota: '/recarga' },
-  { nome: 'Recarregue automaticamente', icone: 'refresh-outline' },
-  { nome: 'Onde validar', icone: 'location-outline' },
-  { nome: 'Perguntas frequentes (FAQ)', icone: 'help-circle-outline' },
-  { nome: 'Onde estamos', icone: 'map-outline' },
-  { nome: 'Clube Riocard Mais', icone: 'star-outline' },
-  { nome: 'Código de autorização', icone: 'key-outline' },
-  { nome: 'Fiscalização', icone: 'shield-checkmark-outline' },
-  { nome: 'Central de notificações', icone: 'notifications-outline' },
-  { nome: 'Avaliar o aplicativo', icone: 'thumbs-up-outline' },
+  { nome: "Perfil", icone: "person-outline", rota: "/perfil" },
+  { nome: "Gerenciar pagamento", icone: "wallet-outline" },
+  { nome: "Cartão Digital", icone: "phone-portrait-outline" },
+  { nome: "Meus Cartões", icone: "card-outline", rota: "/cartoes" },
+  { nome: "Meus pedidos", icone: "receipt-outline" },
+  { nome: "Recarregue seu cartão", icone: "cash-outline", rota: "/recarga" },
+  { nome: "Recarregue automaticamente", icone: "refresh-outline" },
+  { nome: "Onde validar", icone: "location-outline" },
+  { nome: "Perguntas frequentes (FAQ)", icone: "help-circle-outline" },
+  { nome: "Onde estamos", icone: "map-outline" },
+  { nome: "Clube Riocard Mais", icone: "star-outline" },
+  { nome: "Código de autorização", icone: "key-outline" },
+  { nome: "Fiscalização", icone: "shield-checkmark-outline" },
+  { nome: "Central de notificações", icone: "notifications-outline" },
+  { nome: "Avaliar o aplicativo", icone: "thumbs-up-outline" },
 ];
 
 export default function ServicosScreen() {
@@ -63,19 +63,11 @@ export default function ServicosScreen() {
               }
             }}
           >
-            <Ionicons
-              name={item.icone as any}
-              size={25}
-              color={AZUL}
-            />
+            <Ionicons name={item.icone as any} size={25} color={AZUL} />
 
             <Text style={styles.serviceText}>{item.nome}</Text>
 
-            <Ionicons
-              name="chevron-forward"
-              size={22}
-              color="#999"
-            />
+            <Ionicons name="chevron-forward" size={22} color="#999" />
           </TouchableOpacity>
         ))}
 
@@ -102,18 +94,18 @@ export default function ServicosScreen() {
         <NavItem
           icon="home-outline"
           label="Início"
-          onPress={() => router.replace('/')}
+          onPress={() => router.replace("/")}
         />
 
         <NavItem
           icon="card-outline"
-          label={'Meus\ncartões'}
-          onPress={() => router.push('/cartoes')}
+          label={"Meus\ncartões"}
+          onPress={() => router.push("/cartoes")}
         />
 
         <TouchableOpacity
           style={styles.rechargeNav}
-          onPress={() => router.push('/recarga')}
+          onPress={() => router.push("/recarga")}
         >
           <View style={styles.rechargeCircle}>
             <MaterialCommunityIcons name="cash-plus" size={28} color="#fff" />
@@ -142,14 +134,8 @@ function NavItem({
 }) {
   return (
     <TouchableOpacity style={styles.navItem} onPress={onPress}>
-      <Ionicons
-        name={icon}
-        size={27}
-        color={active ? AZUL : CINZA}
-      />
-      <Text style={[styles.navText, active && styles.navActive]}>
-        {label}
-      </Text>
+      <Ionicons name={icon} size={27} color={active ? AZUL : CINZA} />
+      <Text style={[styles.navText, active && styles.navActive]}>{label}</Text>
     </TouchableOpacity>
   );
 }
@@ -157,33 +143,33 @@ function NavItem({
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#f9faf7',
+    backgroundColor: "#f9faf7",
   },
 
   header: {
     height: 125,
     backgroundColor: AZUL,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     paddingHorizontal: 20,
   },
 
   logo: {
-    alignItems: 'center',
+    alignItems: "center",
   },
 
   logoRio: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 28,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     lineHeight: 29,
   },
 
   logoMais: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 27,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     lineHeight: 28,
   },
 
@@ -200,23 +186,23 @@ const styles = StyleSheet.create({
   title: {
     color: AZUL,
     fontSize: 27,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 15,
   },
 
   serviceRow: {
     minHeight: 61,
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
+    borderBottomColor: "#ddd",
   },
 
   serviceText: {
     flex: 1,
     marginLeft: 15,
     fontSize: 16,
-    color: '#333',
+    color: "#333",
   },
 
   extraArea: {
@@ -224,69 +210,69 @@ const styles = StyleSheet.create({
   },
 
   version: {
-    textAlign: 'center',
-    color: '#888',
+    textAlign: "center",
+    color: "#888",
     marginBottom: 20,
   },
 
   report: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     paddingVertical: 15,
   },
 
   reportText: {
-    color: '#333',
+    color: "#333",
     fontSize: 16,
     marginLeft: 15,
   },
 
   logout: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     paddingVertical: 15,
   },
 
   logoutText: {
-    color: '#d33',
+    color: "#d33",
     fontSize: 16,
     marginLeft: 15,
   },
 
   bottomNav: {
     height: 82,
-    flexDirection: 'row',
-    backgroundColor: '#fafbf8',
+    flexDirection: "row",
+    backgroundColor: "#fafbf8",
     borderTopWidth: 1,
-    borderTopColor: '#ddd',
+    borderTopColor: "#ddd",
   },
 
   navItem: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   rechargeNav: {
     flex: 1.1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   rechargeCircle: {
     width: 49,
     height: 49,
     borderRadius: 25,
-    backgroundColor: '#aaa',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "#aaa",
+    justifyContent: "center",
+    alignItems: "center",
     marginTop: -19,
   },
 
   navText: {
     color: CINZA,
     fontSize: 11,
-    textAlign: 'center',
+    textAlign: "center",
     marginTop: 3,
   },
 

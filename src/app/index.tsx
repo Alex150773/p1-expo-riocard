@@ -102,7 +102,7 @@ export default function HomeScreen() {
 
           <Service
             icon="clipboard-text-outline"
-            title={'Meus\npedidos'}
+            title={'Meus pedidos'}
           />
         </View>
       </ScrollView>
@@ -321,18 +321,22 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingHorizontal: 8,
   },
 
   separator: {
-    width: 1,
-    height: '100%',
+    width: 2,
+    height: '75%',
     backgroundColor: '#fff',
+    marginHorizontal: 4,
   },
 
   paymentText: {
+    flexShrink: 1,
     color: '#fff',
-    fontSize: 13,
+    fontSize: 11,
     marginLeft: 5,
+    textAlign: 'center',
   },
 
   sectionTitle: {
@@ -355,17 +359,17 @@ const styles = StyleSheet.create({
   servicesGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    paddingHorizontal: 14,
+    paddingHorizontal: 10,
     justifyContent: 'space-between',
   },
 
   serviceCard: {
-    width: '31%',
+    width: '32%',
     minHeight: 105,
     backgroundColor: '#fff',
     borderRadius: 7,
-    marginBottom: 14,
-    padding: 13,
+    marginBottom: 12,
+    padding: 10,
     elevation: 2,
     borderWidth: 1,
     borderColor: '#e5e5e5',
@@ -373,10 +377,10 @@ const styles = StyleSheet.create({
 
   serviceText: {
     color: '#333',
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '600',
     marginTop: 8,
-    lineHeight: 19,
+    lineHeight: 17,
   },
 
   bottomNav: {

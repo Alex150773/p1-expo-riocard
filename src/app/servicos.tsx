@@ -1,11 +1,11 @@
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import {
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -73,6 +73,7 @@ export default function ServicosScreen() {
 
         <View style={styles.extraArea}>
           <Text style={styles.version}>Versão 2.68.7-P</Text>
+          <Text style={styles.versionInfo}>Aplicativo Riocard Mais</Text>
 
           <TouchableOpacity style={styles.report}>
             <MaterialCommunityIcons
@@ -213,6 +214,14 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "#888",
     marginBottom: 20,
+  },
+
+  versionInfo: {
+    textAlign: 'center',
+    color: '#999',
+    fontSize: 12,
+    marginTop: -14,
+    marginBottom: 18,
   },
 
   report: {

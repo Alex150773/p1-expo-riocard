@@ -1,12 +1,12 @@
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import {
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const AZUL = '#087DDD';
 const CINZA = '#777';
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
   },
 
   row: {
-    minHeight: 68,
+    minHeight: 72,
     flexDirection: 'row',
     alignItems: 'center',
     borderBottomWidth: 1,
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
 
   rowText: {
     flex: 1,
-    fontSize: 17,
+    fontSize: 18,
     color: '#333',
     marginLeft: 15,
   },

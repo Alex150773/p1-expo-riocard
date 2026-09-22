@@ -1,7 +1,6 @@
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import {
   ScrollView,
   StyleSheet,
@@ -9,6 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const AZUL = '#087DDD';
 
@@ -35,10 +35,10 @@ export default function SelecionarCartoesScreen() {
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}
       >
-        <Text style={styles.title}>Escolha os cartões</Text>
+        <Text style={styles.title}>Escolha um ou mais cartões</Text>
 
         <Text style={styles.subtitle}>
-          Selecione o cartão que deseja recarregar
+          Selecione os cartões que deseja recarregar
         </Text>
 
         <TouchableOpacity

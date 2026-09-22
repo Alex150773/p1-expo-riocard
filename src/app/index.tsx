@@ -1,6 +1,5 @@
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import {
   ScrollView,
   StyleSheet,
@@ -8,6 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const AZUL = '#087DDD';
 const AZUL_ESCURO = '#0064A9';
@@ -367,9 +367,9 @@ const styles = StyleSheet.create({
     width: '32%',
     minHeight: 105,
     backgroundColor: '#fff',
-    borderRadius: 7,
+    borderRadius: 12,
     marginBottom: 12,
-    padding: 10,
+    padding: 12,
     elevation: 2,
     borderWidth: 1,
     borderColor: '#e5e5e5',
